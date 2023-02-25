@@ -5,8 +5,13 @@ function App() {
 
   useEffect(() => {
     (async function () {
-      const { text } = await( await fetch(`/api/HttpTrigger1`)).json();
+
+      const { text } = await( await fetch(`/api/GetRiddle?` + new URLSearchParams({
+        user: "ConnorGoodman",
+        riddle: "RiddleName"
+      }))).json();
       setData(text);
+      console.log(text);
     })();
   });
 
