@@ -36,7 +36,6 @@ jobs:
       uses: actions/upload-artifact@v2
       env:
           TAG_NAME: test-report-${{ steps.date.outputs.date }}
-          CI: false
       if: always()
       with: 
         name: ${{ steps.date.outputs.date }}
