@@ -1,33 +1,74 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, Button } from '@mui/material';
+import { FormControl, Button, Input, InputLabel, FormHelperText, Grid } from '@mui/material';
 
 function CreateRiddle () {
 
-    const [data, setData] = useState('');
+    const [user, setUser] = useState('RiddleLocker');
+    const [riddle, setRiddle] = useState('');
+    const [lockername, setLockername] = useState('');
+    const [answer, setAnswer] = useState('');
+    const [secret, setSecret] = useState('');
 
-    async function Submit(_user, _riddlename, _riddle, _answer, _secret) {
+
+    async function Submit() {
     
-        const { text } = await( await fetch(`/api/AddRiddle?` + 
+        console.log(secret);
+        const { response } = await( await fetch(`/api/AddRiddle?` + 
             new URLSearchParams({
-                user: _user,
-                riddle: _riddle,
-                riddlename: _riddlename,
-                answer: _answer,
-                secret: _secret
+                user: user,
+                riddle: riddle,
+                lockername: lockername,
+                answer: answer,
+                secret: secret
                 }),
             {method: "POST"}
         ));
-        setData(text);
+
+        
     };
 
     return (
       <div>
-        This is where you create a riddle!
-        <FormControl>
-        <InputLabel htmlFor="my-input">Email address</InputLabel>
-  <Input id="my-input" aria-describedby="my-helper-text" />
-  <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
-        </FormControl>
+        <span>This is where you create a riddle!</span>
+        <br/>
+
+        <div>
+            <FormControl>
+                <InputLabel htmlFor="locker-name-input">Locker Name</InputLabel>
+                <Input id="locker-name-input" aria-describedby="locker-name-helper-text" onChange={ (e) => setLockername(e.target.value) }/>
+                <FormHelperText id="locker-name-helper-text">Must be a unique name.</FormHelperText>
+            </FormControl>
+        </div>
+        <br/>
+        <div>
+            <FormControl>
+                <InputLabel htmlFor="riddle-input">Riddle</InputLabel>
+                <Input id="riddle-input" aria-describedby="riddle-helper-text" onChange={ (e) => setRiddle(e.target.value) }/>
+                <FormHelperText id="riddle-helper-text">What riddle will be on the locker?</FormHelperText>
+            </FormControl>
+        </div>
+        <br/>
+        <div>
+            <FormControl>
+                <InputLabel htmlFor="passcode-input">Passcode</InputLabel>
+                <Input id="passcode-input" aria-describedby="passcode-helper-text" onChange={ (e) => setAnswer(e.target.value) }/>
+                <FormHelperText id="passcode-helper-text">What phrase will open the locker?</FormHelperText>
+            </FormControl>
+        </div>
+        <br/>
+        <div>
+            <FormControl>
+                <InputLabel htmlFor="secret-input">Secret</InputLabel>
+                <Input id="secret-input" aria-describedby="secret-helper-text" onChange={ (e) => setSecret(e.target.value) }/>
+                <FormHelperText id="secret-helper-text">What is being stored in the locker?</FormHelperText>
+            </FormControl>
+        </div>
+        <br/>
+        <div>
+            <FormControl>
+                <Button onClick={(e) => Submit() }>Submit</Button>
+            </FormControl>
+        </div>
         
       </div>
     )
