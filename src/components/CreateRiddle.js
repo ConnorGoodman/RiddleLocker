@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { FormControl, Button, Input, InputLabel, FormHelperText, Grid } from '@mui/material';
+import React, { useState} from 'react';
+import { FormControl, Button, Input, InputLabel, FormHelperText} from '@mui/material';
 
 function CreateRiddle () {
 
@@ -8,7 +8,7 @@ function CreateRiddle () {
     const [lockername, setLockername] = useState('');
     const [answer, setAnswer] = useState('');
     const [secret, setSecret] = useState('');
-
+    const [data, setData] = useState('');
 
     async function Submit() {
     
@@ -23,7 +23,8 @@ function CreateRiddle () {
                 }),
             {method: "POST"}
         ));
-
+        setUser(user)
+        setData(response)
         
     };
 
@@ -69,8 +70,11 @@ function CreateRiddle () {
                 <Button onClick={(e) => Submit() }>Submit</Button>
             </FormControl>
         </div>
-        
+        <div>
+            {data}
+        </div>
       </div>
+      
     )
   
 }

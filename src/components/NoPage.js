@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import Button from '@mui/material/Button';
+import React, { } from 'react'
 
 function NoPage(){
     return (
