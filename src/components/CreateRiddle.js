@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import { FormControl, Button, Input, InputLabel, FormHelperText} from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function CreateRiddle () {
 
@@ -11,26 +12,36 @@ function CreateRiddle () {
     const [data, setData] = useState('');
 
     async function Submit() {
-    
-        console.log(secret);
-        const { response } = await( await fetch(`/api/AddRiddle?` + 
-            new URLSearchParams({
-                user: user,
-                riddle: riddle,
-                lockername: lockername,
-                answer: answer,
-                secret: secret
-                }),
-            {method: "POST"}
-        ));
-        setUser(user)
-        setData(response)
         
+        fetch(`http://localhost:7071/api/AddLocker/?` + 
+            new URLSearchParams({
+            user: user,
+            riddle: riddle,
+            lockername: lockername,
+            answer: answer,
+            secret: secret
+            }),
+            {method: "POST"})
+            .then((response) => response.json()).then((r) => {
+                console.log('Response:', r)
+                setData(r.url);
+             })
+            .catch((error) => {
+                console.log('error: ' + error);
+                return;
+            });
+        setUser(user);
+
+        
+
+
     };
 
     return (
       <div>
-        <span>This is where you create a riddle!</span>
+        <span>This is where you create a locker!</span>
+        <br/>
+        <br/>
         <br/>
 
         <div>
@@ -70,9 +81,11 @@ function CreateRiddle () {
                 <Button onClick={(e) => Submit() }>Submit</Button>
             </FormControl>
         </div>
-        <div>
-            {data}
-        </div>
+        {data &&
+            <div>
+                <Link to={data}>See your locker</Link>
+            </div>
+        }
       </div>
       
     )

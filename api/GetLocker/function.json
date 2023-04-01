@@ -9,7 +9,7 @@
         "get",
         "post"
       ],
-      "path" : "GetRiddle/{user}/{riddle}"
+      "path" : "GetLocker/{user}/{riddle}"
     },
     {
       "type": "http",

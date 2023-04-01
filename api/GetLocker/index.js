@@ -9,7 +9,9 @@ module.exports = async function (context, req) {
     const  credential = new  AzureNamedKeyCredential(accountname, accountkey);
     const  client = new  TableClient(`https://${accountname}.table.core.windows.net`, tablename, credential);
 
-    let result = await client.getEntity(context.bindingData.query.user, context.bindingData.query.riddle)
+    context.log(context.bindingData.query.user);
+    context.log(context.bindingData.query.locker);
+    let result = await client.getEntity(context.bindingData.query.user, context.bindingData.query.locker)
     .catch((error) => {
         // handle any errors
     });
