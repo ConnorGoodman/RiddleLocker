@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function CreateRiddle () {
 
-    const [user, setUser] = useState('RiddleLocker');
+    //const [user, setUser] = useState('RiddleLocker');
     const [riddle, setRiddle] = useState('');
     const [lockername, setLockername] = useState('');
     const [answer, setAnswer] = useState('');
@@ -15,7 +15,7 @@ function CreateRiddle () {
         
         fetch(`api/AddLocker/?` + 
             new URLSearchParams({
-            user: user,
+            user: 'RiddleLocker',
             riddle: riddle,
             lockername: lockername,
             answer: answer,
