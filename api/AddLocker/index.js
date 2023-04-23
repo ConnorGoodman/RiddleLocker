@@ -9,6 +9,7 @@ module.exports = async function (context, req) {
     const  tablename = process.env.tableName;
     const  credential = new  AzureNamedKeyCredential(accountname, accountkey);
 
+    context.log(accountname);
     const  client = new  TableClient(`https://${accountname}.table.core.windows.net`, tablename, credential);
 
     const _username = context.bindingData.query.user;
