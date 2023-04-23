@@ -13,7 +13,7 @@ function CreateRiddle () {
 
     async function Submit() {
         
-        fetch(`http://localhost:7071/api/AddLocker/?` + 
+        fetch(`api/AddLocker/?` + 
             new URLSearchParams({
             user: user,
             riddle: riddle,
@@ -30,11 +30,6 @@ function CreateRiddle () {
                 console.log('error: ' + error);
                 return;
             });
-        setUser(user);
-
-        
-
-
     };
 
     return (
@@ -48,7 +43,7 @@ function CreateRiddle () {
             <FormControl>
                 <InputLabel htmlFor="locker-name-input">Locker Name</InputLabel>
                 <Input id="locker-name-input" aria-describedby="locker-name-helper-text" onChange={ (e) => setLockername(e.target.value) }/>
-                <FormHelperText id="locker-name-helper-text">Must be a unique name.</FormHelperText>
+                <FormHelperText id="locker-name-helper-text">Must be a unique name. Can not include spaces.</FormHelperText>
             </FormControl>
         </div>
         <br/>

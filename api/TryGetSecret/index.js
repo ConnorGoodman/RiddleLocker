@@ -10,15 +10,13 @@ module.exports = async function (context, req) {
     const  client = new  TableClient(`https://${accountname}.table.core.windows.net`, tablename, credential);
 
     let user = "RiddleLocker"
-    
-    context.log(context.bindingData.query.locker);
+    const _answer =  context.bindingData.query.answer;
     let isError = false;
 
     let result = await client.getEntity(user, context.bindingData.query.locker)
     .catch((error) => {
         isError = true
         context.res = {
-            // status: 200, /* Defaults to 200 */
             body : {
                 error : error.details.odataError.code
             },
@@ -28,11 +26,25 @@ module.exports = async function (context, req) {
     if (!isError) {
         context.log(result);
 
-    context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: {
-            Riddle : result.Riddle
+        // check if the secret is correct
+        context.log(result.Answer)
+        context.log(_answer)
+        context.log(result.Secret)
+        if (result.Answer.toLowerCase() == _answer.toLowerCase()) {
+            context.res = {
+                body: {
+                    isCorrect : true,
+                    Secret : result.Secret
+                }
+            };
         }
-    };
+        else {
+            context.res = {
+                body: {
+                    isCorrect : false
+                }
+            };
+        }
+        
     }
 }

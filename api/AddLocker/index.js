@@ -24,25 +24,56 @@ module.exports = async function (context, req) {
         Answer: _answer,
         Secret: _secret
     }
-    context.log(data);
-    let result = await client.createEntity(data)
-    .catch((error) => {
-        // handle any errors
-        context.log("Error: " + error)
 
+    let isValid = validateData(data)
+
+    if (isValid) {
+        context.log(data);
+        let isError = false;
+        let result = await client.createEntity(data)
+        .catch((error) => {
+            // handle any errors
+            isError = true
+            context.log("Error: " + error)
+
+            context.res = {
+                // status: 200, /* Defaults to 200 */
+                body : {
+                    error : error.details.odataError.code
+                },
+                status: error.statusCode
+            };
+            
+        });
+        if (!isError) {
+            context.res = {
+                // status: 200, /* Defaults to 200 */
+                body: {
+                    "url" :  process.env.baseurl + "viewriddle?locker=" + _lockerName
+                }
+                
+
+            };
+        }
+        context.log(result);
+    }
+    else {
         context.res = {
             // status: 200, /* Defaults to 200 */
             body: {
-                error
-            }
-        };
-    });
-    context.log(result);
+                error :  "InvalidData"
+            },
+            status: 422
+            
 
-    context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: {
-            "url" :  process.env.baseurl
-        }
-    };
+        };
+    }
+
+}
+
+function validateData(data) {
+    if (data.RowKey.includes(' ')) {
+        return false;
+    }
+    return true
 }
