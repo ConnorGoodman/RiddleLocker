@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, Button, Input, InputLabel, FormHelperText} from '@mui/material';
+import { FormControl, Button, Input, FormHelperText} from '@mui/material';
+import openlock from '../images/unlocked.jpg'
+import closedlock from '../images/locked.jpg'
 
 function ViewRiddle() {
     const [data, setData] = useState();
@@ -56,11 +58,13 @@ function ViewRiddle() {
         <div>
           {data ? 
           (<div>
-            <span>{data.Riddle}</span>
+            <h1>Locker: {locker}</h1>
+            <h2>The Riddle Is:</h2>
+            <h2>{data.Riddle}</h2>
+            <br/>
             <FormControl>
-                <InputLabel htmlFor="passcode-input">Answer</InputLabel>
                 <Input id="passcode-input" aria-describedby="passcode-helper-text" onChange={ (e) => setAnswer(e.target.value) }/>
-                <FormHelperText id="passcode-helper-text">Passkey to open the locker</FormHelperText>
+                <FormHelperText id="passcode-helper-text">Enter your guess</FormHelperText>
             </FormControl>
 
             {!showSecret && 
@@ -68,13 +72,28 @@ function ViewRiddle() {
                 <Button onClick={(e) => Submit() }>Submit</Button>
             </FormControl>)}
             
+            {!showSecret && (
+              <div>
+                <br/>
+                <img src={closedlock} alt="locked padlock"></img>
+                <br/>
+              </div>
+            )}
+
+            {showSecret && (
+              <div>
+                <br/>
+                <img src={openlock} alt="unlocked padlock"></img>
+                <br/>
+              </div>
+            )}
 
             {showIncorrect && (<div>
               Incorrect! Try again!
             </div>)}
 
             {showSecret && (<div>
-              <span>Correct! Unveiling the secret:</span>
+              <h2>Correct! Unveiling the secret:</h2>
               <br/>
               <span>{secret}</span>
             </div>)}
