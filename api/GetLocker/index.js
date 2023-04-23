@@ -5,7 +5,7 @@ module.exports = async function (context, req) {
     context.log('Get riddle processed a request.');
     const  accountkey =  process.env.accountkey;
     const  accountname = process.env.accountname;
-    const  tablename = process.env.tableName;
+    const  tablename = process.env.tablename;
     const  credential = new  AzureNamedKeyCredential(accountname, accountkey);
     const  client = new  TableClient(`https://${accountname}.table.core.windows.net`, tablename, credential);
 
