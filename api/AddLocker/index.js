@@ -75,5 +75,8 @@ function validateData(data) {
     if (data.RowKey.includes(' ')) {
         return false;
     }
+    else if (data.RowKey.length == 1 || data.Answer.length == 1 || data.PartitionKey.length == 1 || data.Riddle.length == 1 ||  data.Answer.secret == 1) {
+        return false;
+    }
     return true
 }
