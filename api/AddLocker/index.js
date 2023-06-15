@@ -1,6 +1,9 @@
 const { v4: uuidv4 } = require('uuid');
 const { TableClient, AzureNamedKeyCredential } = require("@azure/data-tables");
 
+// Adds a locker to the database
+// Requires a username, locker name, riddle,
+// answer, and secret.
 module.exports = async function (context, req) {
     context.log('Add riddle processed a request.');
 
@@ -28,6 +31,7 @@ module.exports = async function (context, req) {
     let isValid = validateData(data)
 
     if (isValid) {
+        context.log("Data is valid");
         context.log(data);
         let isError = false;
         let result = await client.createEntity(data)
@@ -37,45 +41,42 @@ module.exports = async function (context, req) {
             context.log("Error: " + error)
 
             context.res = {
-                // status: 200, /* Defaults to 200 */
                 body : {
                     error : error.details.odataError.code
                 },
                 status: error.statusCode
             };
-            
         });
         if (!isError) {
+            context.log("Locker successfully added");
             context.res = {
-                // status: 200, /* Defaults to 200 */
                 body: {
                     "url" :  process.env.baseurl + "viewriddle?locker=" + _lockerName
                 }
-                
-
             };
         }
         context.log(result);
     }
     else {
+        context.log("Invalid Data");
+        context.log(data);
         context.res = {
-            // status: 200, /* Defaults to 200 */
             body: {
                 error :  "InvalidData"
             },
             status: 422
-            
-
         };
     }
 
 }
 
 function validateData(data) {
-    if (data.RowKey.includes(' ')) {
+    // locker name and username can not contain spaces
+    if (data.RowKey.includes(' ') || data.PartitionKey.includes(' ')) {
         return false;
     }
-    else if (data.RowKey.length == 1 || data.Answer.length == 1 || data.PartitionKey.length == 1 || data.Riddle.length == 1 ||  data.Answer.secret == 1) {
+    // each field must have a length greater than 0
+    else if (data.RowKey.length == 0 || data.Answer.length == 0 || data.PartitionKey.length == 0 || data.Riddle.length == 0 ||  data.Answer.length == 0 ||  data.Answer.secret == 0) {
         return false;
     }
     return true
