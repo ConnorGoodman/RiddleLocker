@@ -49,29 +49,23 @@ function CreateRiddle () {
             secret: secret
             }),
             {method: "POST"})
-            .then((response) => response.json()).then((r) => {
-                if (!r.ok) {
-                    console.log('Error:');
-                    console.log(r);
-                    setIsError(true);
-                    if (r === "InvalidData") {
-                        setErrorMessage("Invalid data. Please review the form.");
-                    }
-                    setErrorMessage("Error connecting. Please try again later!");
+            .then((response) => {
+                if (!response.ok && response.status !== 200) {
+                    throw new Error('Invalid response');
                 }
-                else {
-                    console.log('Response:')
-                    console.log(r)
-                    setData(r.url);
-                    setIsError(false)
-                }
-                
-             })
+                return response.json();
+            })
+            .then((r) => {
+                console.log('Response:')
+                console.log(r)
+                setData(r.url);
+                setIsError(false);
+            })
             .catch((error) => {
-                console.log('error: ' + error);
+                console.log('Error:');
+                console.log(error);
                 setIsError(true);
                 setErrorMessage("Error connecting. Please try again later!");
-                return;
             });
         }
         else {
