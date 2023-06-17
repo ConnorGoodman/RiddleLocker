@@ -6,12 +6,14 @@ import CreateRiddle from "./components/CreateRiddle";
 import ViewRiddle from "./components/ViewRiddle";
 import NoPage from "./components/NoPage";
 import Layout from "./components/Layout";
+import NavBar from './components/NavBar';
 function App() {
 
   return (
   <BrowserRouter>
+    <NavBar/>
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/">
         <Route index element={<Home />} />
         <Route path="viewriddle" element={<ViewRiddle />} />
         <Route path="createriddle" element={<CreateRiddle />} />
