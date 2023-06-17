@@ -1,4 +1,4 @@
-import { AppBar, Button, IconButton, Toolbar, Typography, Box, InputBase, FormControl } from "@mui/material";
+import { AppBar, Button, IconButton, Toolbar, Typography, Box, InputBase} from "@mui/material";
 import { styled, alpha } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from "react-router-dom";
