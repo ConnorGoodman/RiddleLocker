@@ -1,8 +1,7 @@
 import { AppBar, Button, IconButton, Toolbar, Typography, Box, InputBase, FormControl } from "@mui/material";
 import { styled, alpha } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //import RiddleLockerLogo from '../logo.svg'
 import { useState } from "react";
 
@@ -52,7 +51,7 @@ function NavBar(){
 
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
-    
+
     function Submit(e) {
         e.preventDefault();
         if (!ValidationSearch()) {

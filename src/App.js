@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import CreateRiddle from "./components/CreateRiddle";
 import ViewRiddle from "./components/ViewRiddle";
 import NoPage from "./components/NoPage";
-import Layout from "./components/Layout";
+//import Layout from "./components/Layout";
 import NavBar from './components/NavBar';
 function App() {
 
