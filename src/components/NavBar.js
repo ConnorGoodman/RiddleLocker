@@ -1,6 +1,5 @@
-import { AppBar, Button, IconButton, Toolbar, Typography, Box, InputBase} from "@mui/material";
+import { AppBar, Button, Toolbar, Typography, Box, InputBase, MenuItem} from "@mui/material";
 import { styled, alpha } from '@mui/material/styles';
-import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from "react-router-dom";
 //import RiddleLockerLogo from '../logo.svg'
 import { useState } from "react";
@@ -39,7 +38,7 @@ const Search = styled('div')(({ theme }) => ({
       transition: theme.transitions.create('width'),
       width: '100%',
       [theme.breakpoints.up('sm')]: {
-        width: '12ch',
+        width: '15ch',
         '&:focus': {
           width: '20ch',
         },
@@ -73,7 +72,7 @@ function NavBar(){
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              <IconButton
+              {/* <IconButton
                 size="large"
                 edge="start"
                 color="inherit"
@@ -81,21 +80,42 @@ function NavBar(){
                 sx={{ mr: 2 }}
               >
                 <MenuIcon />
-              </IconButton>
-              <Typography
+              </IconButton> */}
+              <MenuItem
                 variant="h6"
                 noWrap
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                onClick={() => navigate('/')}
               >
-                Riddle Locker
-              </Typography>
+                <Typography style={{fontWeight:"bold"}}>Riddle Locker</Typography>
+              </MenuItem>
+              <MenuItem
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: 1} }}
+                onClick={() => navigate('/createriddle')}
+              >
+                <Typography style={{textAlign:"center"}}>Create a Riddle</Typography>
+                
+              </MenuItem>
+              <MenuItem
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: 1} }}
+                onClick={() => navigate('/createriddle')}
+              >
+                <Typography style={{textAlign:"center"}}>About</Typography>
+                
+              </MenuItem>
               <Box component="form" onSubmit={Submit}>
                 <Search>
                     <SearchIconWrapper >
                     </SearchIconWrapper>
                     <StyledInputBase
-                    placeholder="Locker Name..."
+                    placeholder="Find a locker..."
                     inputProps={{ 'aria-label': 'search' }}
                     onChange={(e) => setSearch(e.target.value)}
                     />

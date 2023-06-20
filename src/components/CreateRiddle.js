@@ -119,10 +119,7 @@ function CreateRiddle () {
 
     return (
       <div>
-        <span>This is where you create a locker!</span>
-        <br/>
-        <br/>
-        <br/>
+        <h2>This is where you create a locker!</h2>
         <div>
             <FormControl>
                 <InputLabel required htmlFor="locker-name-input">Locker Name</InputLabel>

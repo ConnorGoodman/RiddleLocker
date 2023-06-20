@@ -11,18 +11,39 @@ function ViewRiddle() {
     const [showIncorrect, setShowIncorrect] = useState(false);
     const [showSecret, setShowSecret] = useState(false);
 
+    const [isError, setIsError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('')
+
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
       (async function () {
-
         const queryParams = new URLSearchParams(window.location.search);
-
-        setLocker(queryParams.get('locker'))
-        let text = await( await fetch(`api/GetLocker?` + new URLSearchParams({
-          locker: queryParams.get('locker')
-        }))).json();
+    
+        setLocker(queryParams.get('locker'));
+        try {
+          const response = await fetch(`api/GetLocker?` + new URLSearchParams({
+            locker: queryParams.get('locker')
+          }));
+          
+          if (!response.ok) {
+            if (response.status === 404) {
+              throw new Error('Locker not found');
+            } else {
+              throw new Error("Can't connect to server");
+            }
+          }
+          
+          const text = await response.json();
           setData(text);
           console.log(text);
-          })();
+        } catch (error) {
+          setIsLoading(false);
+          setIsError(true);
+          setErrorMessage(error.message);
+          console.log('Error:', error);
+        }
+      })();
     }, []);
 
     async function Submit() {
@@ -56,7 +77,7 @@ function ViewRiddle() {
     return (
 
         <div>
-          {data ? 
+          {data && 
           (<div>
             <h1>Locker: {locker}</h1>
             <h2>The Riddle Is:</h2>
@@ -98,12 +119,18 @@ function ViewRiddle() {
               <span>{secret}</span>
             </div>)}
 
-            </div>) : 
-          (<div>Loading Riddle</div>)}
+            </div>)
+          }
+          {
+            isLoading && (<h2>Loading Riddle</h2>)
+          }
+          {
+            isError && (<h2>{errorMessage}</h2>)
+          }
         </div>
     )
     
 
     
 }
-export default ViewRiddle
+export default ViewRiddle;

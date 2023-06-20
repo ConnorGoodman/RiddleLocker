@@ -11,7 +11,7 @@ module.exports = async function (context, req) {
 
     // TODO - add user system. For now, everyone is user RiddleLocker
     let user = "RiddleLocker"
-    let lockerName = context.bindingData.query.locker;
+    let lockerName = context.bindingData.query.locker.toLowerCase();
     context.log(lockerName);
     let isError = false;
 

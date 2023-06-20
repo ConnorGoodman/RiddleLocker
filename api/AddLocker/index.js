@@ -15,7 +15,7 @@ module.exports = async function (context, req) {
     const  client = new  TableClient(`https://${accountname}.table.core.windows.net`, tablename, credential);
 
     const _username = context.bindingData.query.user;
-    const _lockerName = context.bindingData.query.lockername;
+    const _lockerName = context.bindingData.query.lockername.toLowerCase();
     const _riddle = context.bindingData.query.riddle;
     const _answer =  context.bindingData.query.answer;
     const _secret =  context.bindingData.query.secret;
