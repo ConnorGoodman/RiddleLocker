@@ -76,6 +76,7 @@ const ViewRiddle = () => {
         }
 
         const text = await response.json();
+        setIsLoading(false);
         setData(text);
         console.log(text);
       } catch (error) {

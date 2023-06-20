@@ -1,4 +1,4 @@
-import { AppBar, Button, Toolbar, Typography, Box, InputBase, MenuItem } from "@mui/material";
+import { AppBar, Button, Toolbar, Typography, Box, InputBase, Hidden } from "@mui/material";
 import { styled, alpha } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -73,33 +73,39 @@ const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: '#000724' }}>
         <Toolbar>
-          <MenuItem
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-            onClick={() => navigate('/')}
-          >
-            <StyledTypography>Riddle Locker</StyledTypography>
-          </MenuItem>
-          <MenuItem
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'block', sm: 'none' } }}
-            onClick={() => navigate('/createriddle')}
-          >
-            <Typography style={{ textAlign: "center" }}>Create a Riddle</Typography>
-          </MenuItem>
-          <MenuItem
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'block', sm: 'none' } }}
-            onClick={() => navigate('/about')}
-          >
-            <Typography style={{ textAlign: "center" }}>About</Typography>
-          </MenuItem>
+          <Box sx={{ flexGrow: 1 }}>
+            <Button
+              variant="h6"
+              noWrap
+              component="div"
+              onClick={() => navigate('/')}
+              sx={{ display: { xs: 'none', sm: 'block' } }}
+            >
+              <StyledTypography>Riddle Locker</StyledTypography>
+            </Button>
+          </Box>
+          <Hidden xsDown>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Button
+                variant="h6"
+                noWrap
+                component="div"
+                onClick={() => navigate('/createriddle')}
+                sx={{ mr: 1 }}
+              >
+                <Typography style={{ textAlign: "center" }}>Create a Riddle</Typography>
+              </Button>
+              <Button
+                variant="h6"
+                noWrap
+                component="div"
+                onClick={() => navigate('/about')}
+                sx={{ mr: 1 }}
+              >
+                <Typography style={{ textAlign: "center" }}>About</Typography>
+              </Button>
+            </Box>
+          </Hidden>
           <Box component="form" onSubmit={Submit}>
             <Search>
               <SearchIconWrapper></SearchIconWrapper>
@@ -110,7 +116,6 @@ const NavBar = () => {
               />
             </Search>
           </Box>
-          <Button>Button</Button>
         </Toolbar>
       </AppBar>
     </Box>
