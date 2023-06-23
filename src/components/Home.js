@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, Box, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import lockerphoto from '../images/lockerstockphoto.jpg';
+import logo from '../images/logo.svg';
 import thinkphoto from '../images/think.jpg';
 
 const Container = styled(Box)(({ theme }) => ({
@@ -44,7 +45,7 @@ function Home() {
           <Heading variant="h4">Riddle Locker</Heading>
         </Grid>
         <Grid item xs={4}>
-          <Image src={lockerphoto} alt="set of lockers" />
+          <Image src={logo} alt="riddle locker logo" />
         </Grid>
         <Grid item xs={8}>
           <div style={{ textAlign: 'left' }}>
@@ -65,7 +66,7 @@ function Home() {
           </div>
         </Grid>
         <Grid item xs={4}>
-          <Image src={thinkphoto} alt="man thinking" />
+          <Image src={lockerphoto} alt="lockers in a row" />
         </Grid>
         <Grid item xs={4}>
           <Image src={thinkphoto} alt="man thinking" />
@@ -73,14 +74,8 @@ function Home() {
         <Grid item xs={8}>
           <div style={{ textAlign: 'left' }}>
             <ListContainer>
-              <Typography variant="h6">Here are some use cases for Riddle Locker:</Typography>
+              <Typography variant="h6">Some of the possibilities:</Typography>
               <ol>
-                <ListItem>
-                  Secure Information Sharing: Users can create riddles to lock and protect sensitive
-                  information, such as passwords, secret messages, or confidential documents. The
-                  riddles act as a fun and engaging way to share information securely with trusted
-                  individuals.
-                </ListItem>
                 <ListItem>
                   Team Building and Icebreakers: Riddles can be used as team-building exercises or
                   icebreakers in various settings, such as corporate events, workshops, or educational
@@ -94,24 +89,13 @@ function Home() {
                   way.
                 </ListItem>
                 <ListItem>
-                  Puzzle Challenges: Users can challenge themselves or others by creating intricate and
-                  challenging riddles. These can be shared with a broader audience, fostering a
-                  community of puzzle enthusiasts who enjoy solving and creating riddles.
-                </ListItem>
-                <ListItem>
                   Treasure Hunts and Scavenger Hunts: Riddles can be incorporated into treasure hunts
                   or scavenger hunts, where participants must solve riddles to uncover hidden clues or
                   locations. This adds an element of mystery and excitement to the game and makes it
                   more interactive.
                 </ListItem>
-                <ListItem>
-                  Social Networking: Users can connect with each other, share their created riddles,
-                  and participate in riddle-solving competitions. The platform can facilitate
-                  interactions, discussions, and the sharing of creative riddles within a community of
-                  like-minded individuals.
-                </ListItem>
               </ol>
-              <Typography variant="body1">And more!</Typography>
+              <Typography variant="h6">And more!</Typography>
             </ListContainer>
           </div>
         </Grid>
