@@ -8,8 +8,6 @@ I built this using Azure Static Web apps. It has a React frontend and an Azure F
 
 Thanks for trying it out!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Installation
 
 ### Prerequisites
@@ -29,5 +27,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 scripts is disabled on this system.`, open up PowerShell as an administrator and run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted`
 
 ### Resources
-https://learn.microsoft.com/en-us/azure/static-web-apps/getting-started?tabs=react
+https://learn.microsoft.com/en-us/azure/static-web-apps/getting-started?tabs=react \
 https://learn.microsoft.com/en-us/azure/static-web-apps/add-api?tabs=react
