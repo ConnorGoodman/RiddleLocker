@@ -146,6 +146,7 @@ const ViewRiddle = () => {
                 id="passcode-input"
                 aria-describedby="passcode-helper-text"
                 onChange={(e) => setAnswer(e.target.value)}
+                autoComplete='off'
               />
               <FormHelperText id="passcode-helper-text" style={{ color: '#fff' }}>
                 Enter your guess

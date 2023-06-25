@@ -181,6 +181,7 @@ function CreateRiddle() {
             aria-describedby="passcode-helper-text"
             onChange={(e) => handlePasscode(e.target.value)}
             error={formSubmitted && !validPasscode}
+            autoComplete='off'
           />
           <FormHelperText id="passcode-helper-text">
             What phrase will open the locker?
@@ -199,6 +200,7 @@ function CreateRiddle() {
             aria-describedby="secret-helper-text"
             onChange={(e) => handleSecret(e.target.value)}
             error={formSubmitted && !validSecret}
+            autoComplete='off'
           />
           <FormHelperText id="secret-helper-text">
             What is being stored in the locker?
