@@ -25,6 +25,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 5. Run `npm run build`
 6. Update secrets. TODO - More detailed instructions on secrets.
 7. Finally, to emulate Azure Static Web Apps locally, run `swa start build --api-location api`
+8. If there is an error that looks like `swa cannot be loaded because running 
+scripts is disabled on this system.`, open up PowerShell as an administrator and run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted`
 
 ### Resources
 https://learn.microsoft.com/en-us/azure/static-web-apps/getting-started?tabs=react
