@@ -11,6 +11,7 @@ const PageContainer = styled('div')({
   alignItems: 'center',
   minHeight: '100vh',
   fontFamily: 'Avenir, sans-serif',
+  padding: '2rem'
 });
 
 const SectionContainer = styled('div')({
@@ -42,6 +43,19 @@ const ImageContainer = styled('div')({
 
 const Image = styled('img')({
   width: '200px',
+});
+
+const StyledInput = styled(Input)({
+  color: '#fff',
+  '&:before': {
+    borderBottomColor: '#fff',
+  },
+  '&:after': {
+    borderBottomColor: '#fff',
+  },
+  '&:hover:before': {
+    borderBottomColor: '#fff',
+  },
 });
 
 const ViewRiddle = () => {
@@ -128,7 +142,7 @@ const ViewRiddle = () => {
             </Typography>
             <br />
             <FormControl>
-              <Input
+              <StyledInput
                 id="passcode-input"
                 aria-describedby="passcode-helper-text"
                 onChange={(e) => setAnswer(e.target.value)}
@@ -146,7 +160,6 @@ const ViewRiddle = () => {
 
             {!showSecret && (
               <div>
-                <LineDivider />
                 <ImageContainer>
                   <Image src={closedlock} alt="locked padlock" />
                 </ImageContainer>
@@ -159,7 +172,6 @@ const ViewRiddle = () => {
 
             {showSecret && (
               <div>
-                <LineDivider />
                 <ImageContainer>
                   <Image src={openlock} alt="unlocked padlock" />
                 </ImageContainer>
