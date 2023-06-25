@@ -52,6 +52,12 @@ const NavBar = () => {
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
+  const getCurrentURL = () => {
+    const { pathname, search } = window.location;
+    console.log(pathname + ", " + search);
+    return pathname;
+  };
+
   function Submit(e) {
     e.preventDefault();
     if (!ValidationSearch()) {
@@ -59,7 +65,14 @@ const NavBar = () => {
     }
 
     console.log(search);
-    navigate('/viewriddle?locker=' + search);
+    navigate({
+      pathname: '/viewriddle',
+      search: '?locker=' + search,
+    });
+
+    if (getCurrentURL() === '/viewriddle') {
+      window.location.reload();
+    }
   }
 
   function ValidationSearch() {
