@@ -25,6 +25,7 @@ Thanks for trying it out!
 7. Finally, to emulate Azure Static Web Apps locally, run `swa start build --api-location api`. The first time this is ran, Function Core Tools will be automatically installed.
 8. If there is an error that looks like `swa cannot be loaded because running 
 scripts is disabled on this system.`, open up PowerShell as an administrator and run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted`
+9. If there is an error saying that the version of Windows in incompatible, download Azure Functions Core Tools here: https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Cportal%2Cbash&pivots=programming-language-csharp
 
 ### Resources
 https://learn.microsoft.com/en-us/azure/static-web-apps/getting-started?tabs=react \
