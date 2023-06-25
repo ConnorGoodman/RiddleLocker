@@ -10,9 +10,9 @@ Thanks for trying it out!
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Installation:
+## Installation
 
-### Prerequisites:
+### Prerequisites
 * Node JS
 * Visual Studio Code (Optional)
 * Azure Static Web Apps Extension for Visual Studio Code (Optional)
