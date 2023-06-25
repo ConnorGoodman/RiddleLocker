@@ -23,9 +23,23 @@ Thanks for trying it out!
 5. Run `npm run build`
 6. Update secrets. TODO - More detailed instructions on secrets.
 7. Finally, to emulate Azure Static Web Apps locally, run `swa start build --api-location api`. The first time this is ran, Function Core Tools will be automatically installed.
-8. If there is an error that looks like `swa cannot be loaded because running 
+8. Configure app secrets. In the api folder, create a file called `local.settings.json`. Then, fill in the secrets. Here is an exanple:
+`{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "",
+        "FUNCTIONS_WORKER_RUNTIME": "node",
+        "accountkey": "",
+        "accountname": "",
+        "baseurl":"http://localhost:4280/",
+        "tablename":""
+    }
+}`
+
+### Troubleshooting
+* If there is an error that looks like `swa cannot be loaded because running 
 scripts is disabled on this system.`, open up PowerShell as an administrator and run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted`
-9. If there is an error saying that the version of Windows in incompatible, download Azure Functions Core Tools here: https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Cportal%2Cbash&pivots=programming-language-csharp
+* If there is an error saying that the version of Windows in incompatible, download Azure Functions Core Tools here: https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Cportal%2Cbash&pivots=programming-language-csharp
 
 ### Resources
 https://learn.microsoft.com/en-us/azure/static-web-apps/getting-started?tabs=react \
