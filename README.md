@@ -24,7 +24,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 4. Run `npm install`
 5. Run `npm run build`
 6. Update secrets. TODO - More detailed instructions on secrets.
-7. Finally, to emulate Azure Static Web Apps locally, run `swa start build --api-location api`
+7. Finally, to emulate Azure Static Web Apps locally, run `swa start build --api-location api`. The first time this is ran, Function Core Tools will be automatically installed.
 8. If there is an error that looks like `swa cannot be loaded because running 
 scripts is disabled on this system.`, open up PowerShell as an administrator and run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted`
 
