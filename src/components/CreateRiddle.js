@@ -46,12 +46,16 @@ function CreateRiddle() {
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const validateLockerName = useCallback((lockerName) => {
+    return lockerName.length >= 1 && !lockerName.includes(' ') && isValidQueryParameter(lockerName);
+  }, []);
+  
   const validateForm = useCallback(() => {
     setValidLockerName(validateLockerName(lockerName));
     setValidRiddle(validateRiddle(riddle));
     setValidPasscode(validatePasscode(passcode));
     setValidSecret(validateSecret(secret));
-  }, [lockerName, riddle, passcode, secret]);
+  }, [lockerName, riddle, passcode, secret, validateLockerName]);
 
   useEffect(() => {
     validateForm();
@@ -120,17 +124,10 @@ function CreateRiddle() {
     }
   }
 
-  function isFormValid() {
-    return validLockerName && validPasscode && validRiddle && validSecret;
-  }
 
   function handleLockerName(lockerName) {
     setValidLockerName(validateLockerName(lockerName));
     setLockerName(lockerName);
-  }
-
-  function validateLockerName(lockerName) {
-    return lockerName.length >= 1 && !lockerName.includes(' ') && isValidQueryParameter(lockerName);
   }
 
   function handleRiddle(riddle) {
@@ -158,6 +155,10 @@ function CreateRiddle() {
 
   function validateSecret(secret) {
     return secret.length >= 1;
+  }
+  
+  function isFormValid() {
+    return validLockerName && validPasscode && validRiddle && validSecret;
   }
 
   return (
