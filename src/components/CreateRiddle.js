@@ -57,6 +57,30 @@ function CreateRiddle() {
     validateForm();
   }, [validateForm]);
 
+  function isValidQueryParameter(str) {
+    if (!str) {
+      return false;
+    }
+  
+    const forbiddenChars = ['&', '=', '?', '#'];
+    if (forbiddenChars.some(char => str.includes(char))) {
+      return false;
+    }
+  
+    const firstChar = str.charAt(0);
+    if (!/[a-zA-Z_]/.test(firstChar)) {
+      return false;
+    }
+  
+    const allowedChars = /[a-zA-Z0-9\-_.~]/;
+    for (let i = 1; i < str.length; i++) {
+      if (!allowedChars.test(str.charAt(i))) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   async function Submit() {
     setFormSubmitted(true);
     validateForm();
@@ -106,7 +130,7 @@ function CreateRiddle() {
   }
 
   function validateLockerName(lockerName) {
-    return lockerName.length >= 1 && !lockerName.includes(' ');
+    return lockerName.length >= 1 && !lockerName.includes(' ') && isValidQueryParameter(lockerName);
   }
 
   function handleRiddle(riddle) {

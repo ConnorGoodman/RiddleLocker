@@ -58,9 +58,34 @@ const NavBar = () => {
     return pathname;
   };
 
+  function isValidQueryParameter(str) {
+    if (!str) {
+      return false;
+    }
+  
+    const forbiddenChars = ['&', '=', '?', '#'];
+    if (forbiddenChars.some(char => str.includes(char))) {
+      return false;
+    }
+  
+    const firstChar = str.charAt(0);
+    if (!/[a-zA-Z_]/.test(firstChar)) {
+      return false;
+    }
+  
+    const allowedChars = /[a-zA-Z0-9\-_.~]/;
+    for (let i = 1; i < str.length; i++) {
+      if (!allowedChars.test(str.charAt(i))) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+
   function Submit(e) {
     e.preventDefault();
-    if (!ValidationSearch()) {
+    if (!ValidationSearch() || !isValidQueryParameter(search)) {
       return;
     }
 

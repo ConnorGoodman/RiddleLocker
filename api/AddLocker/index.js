@@ -70,6 +70,30 @@ module.exports = async function (context, req) {
 
 }
 
+function isValidQueryParameter(str) {
+    if (!str) {
+      return false;
+    }
+  
+    const forbiddenChars = ['&', '=', '?', '#'];
+    if (forbiddenChars.some(char => str.includes(char))) {
+      return false;
+    }
+  
+    const firstChar = str.charAt(0);
+    if (!/[a-zA-Z_]/.test(firstChar)) {
+      return false;
+    }
+  
+    const allowedChars = /[a-zA-Z0-9\-_.~]/;
+    for (let i = 1; i < str.length; i++) {
+      if (!allowedChars.test(str.charAt(i))) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 function validateData(data) {
     // locker name and username can not contain spaces
     if (data.RowKey.includes(' ') || data.PartitionKey.includes(' ')) {
@@ -79,5 +103,9 @@ function validateData(data) {
     else if (data.RowKey.length == 0 || data.Answer.length == 0 || data.PartitionKey.length == 0 || data.Riddle.length == 0 ||  data.Answer.length == 0 ||  data.Answer.secret == 0) {
         return false;
     }
-    return true
+    // each field must be a valid query parameter
+    // else if (!isValidQueryParameter(data.RowKey) || isValidQueryParameter(data.PartitionKey)) {
+    //     return false;
+    // }
+    return true;
 }
