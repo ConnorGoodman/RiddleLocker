@@ -7,6 +7,7 @@ import ViewRiddle from './components/ViewRiddle';
 import NoPage from './components/NoPage';
 import NavBar from './components/NavBar';
 import MobileNavBar from './components/MobileNavBar';
+import About from './components/About';
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
@@ -32,7 +33,8 @@ function App() {
         <Route path="/">
           <Route index element={<Home />} />
           <Route path="viewriddle" element={<ViewRiddle />} />
-          <Route path="createriddle" element={<CreateRiddle />} />
+          <Route path="createriddle" element={<CreateRiddle />} />  
+          <Route path="about" element={<About/>} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
