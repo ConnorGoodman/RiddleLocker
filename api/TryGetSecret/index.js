@@ -14,7 +14,7 @@ module.exports = async function (context, req) {
     let isError = false;
 
     let lockerName = context.bindingData.query.locker.toLowerCase();
-    let result = await client.getEntity(user, lockername)
+    let result = await client.getEntity(user, lockerName)
     .catch((error) => {
         isError = true
         context.res = {
