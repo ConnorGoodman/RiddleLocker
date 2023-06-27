@@ -13,7 +13,8 @@ module.exports = async function (context, req) {
     const _answer =  context.bindingData.query.answer;
     let isError = false;
 
-    let result = await client.getEntity(user, context.bindingData.query.locker)
+    let lockerName = context.bindingData.query.locker.toLowerCase();
+    let result = await client.getEntity(user, context.bindingData.query.lockername)
     .catch((error) => {
         isError = true
         context.res = {
