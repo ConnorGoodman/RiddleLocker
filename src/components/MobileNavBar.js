@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
-import { styled, alpha } from "@mui/material/styles";
+import { styled, alpha, useTheme } from "@mui/material/styles";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -129,9 +129,11 @@ const NavBar = () => {
     handleMobileMenuClose();
   };
 
+  const theme = useTheme();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: "#000724" }}>
+      <AppBar position="static" sx={{ backgroundColor: theme.palette.main }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Riddle Locker

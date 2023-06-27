@@ -9,7 +9,7 @@ const Container = styled(Box)(({ theme }) => ({
   padding: '60px',
   marginTop: theme.spacing(4),
   fontSize: 20,
-  backgroundColor: '#eeeeee',
+  backgroundColor: theme.palette.locker.main,
 }));
 
 const Heading = styled(Typography)(({ theme }) => ({

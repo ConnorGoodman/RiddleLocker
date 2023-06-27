@@ -14,7 +14,7 @@ import { styled } from '@mui/material/styles';
 const Container = styled(Box)(({ theme }) => ({
   padding: '60px',
   marginTop: theme.spacing(4),
-  backgroundColor: '#eeeeee',
+  backgroundColor: theme.palette.background.main,
   maxWidth: '500px',
   margin: '0 auto',
 }));
@@ -49,7 +49,7 @@ function CreateRiddle() {
   const validateLockerName = useCallback((lockerName) => {
     return lockerName.length >= 1 && !lockerName.includes(' ') && isValidQueryParameter(lockerName);
   }, []);
-  
+
   const validateForm = useCallback(() => {
     setValidLockerName(validateLockerName(lockerName));
     setValidRiddle(validateRiddle(riddle));

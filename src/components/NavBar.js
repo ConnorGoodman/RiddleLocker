@@ -2,6 +2,7 @@ import { AppBar, Button, Toolbar, Typography, Box, InputBase, Hidden } from "@mu
 import { styled, alpha } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useTheme } from "@mui/material/styles";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -107,9 +108,11 @@ const NavBar = () => {
     return true;
   }
 
+  const theme = useTheme();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: '#000724' }}>
+      <AppBar position="static" sx={{ backgroundColor: theme.palette.primary.main }}>
         <Toolbar>
           <Box sx={{ flexGrow: 1 }}>
             <Button

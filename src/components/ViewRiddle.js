@@ -1,41 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, Button, Input, FormHelperText, Typography } from '@mui/material';
+import { FormControl, Button, Input, FormHelperText, Typography, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
 import openlock from '../images/unlocked.jpg';
 import closedlock from '../images/locked.jpg';
 
-const PageContainer = styled('div')({
-  backgroundColor: '#f2f2f2',
+const PageContainer = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.main,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   minHeight: '100vh',
   fontFamily: 'Avenir, sans-serif',
-  padding: '2rem'
-});
+  padding: '2rem',
+}));
 
-const SectionContainer = styled('div')({
-  backgroundColor: '#000724',
+const SectionContainer = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.locker.background,
   borderRadius: '8px',
   padding: '2rem',
   textAlign: 'center',
   boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
-});
+}));
 
-const EngravedText = styled('h1')({
+const EngravedText = styled('h1')(({ theme }) => ({
   fontFamily: 'Avenir, sans-serif',
   fontSize: '2.5rem',
   fontWeight: 'bold',
-  color: '#fff',
+  color: theme.palette.locker.text,
   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
   letterSpacing: '2px',
-});
+}));
 
-const LineDivider = styled('hr')({
+const LineDivider = styled('hr')(({ theme }) => ({
   border: 0,
-  borderTop: '1px solid #777777',
+  borderTop: `1px solid ${theme.palette.text.main}`,
   margin: '2rem 0',
-});
+}));
 
 const ImageContainer = styled('div')({
   marginTop: '2rem',
@@ -45,20 +45,21 @@ const Image = styled('img')({
   width: '200px',
 });
 
-const StyledInput = styled(Input)({
-  color: '#fff',
+const StyledInput = styled(Input)(({ theme }) => ({
+  color: theme.palette.locker.text,
   '&:before': {
-    borderBottomColor: '#fff',
+    borderBottomColor: theme.palette.locker.text,
   },
   '&:after': {
-    borderBottomColor: '#fff',
+    borderBottomColor: theme.palette.locker.text,
   },
   '&:hover:before': {
-    borderBottomColor: '#fff',
+    borderBottomColor: theme.palette.locker.text,
   },
-});
+}));
 
 const ViewRiddle = () => {
+  //const [data, setData] = useState({ Riddle: 'What is the answer to life, the universe, and everything?', Secret: '42', Locker: '1'});
   const [data, setData] = useState();
   const [answer, setAnswer] = useState();
   const [locker, setLocker] = useState();
@@ -127,6 +128,8 @@ const ViewRiddle = () => {
       });
   };
 
+  const theme = useTheme();
+
   return (
     <PageContainer>
       <SectionContainer>
@@ -134,10 +137,10 @@ const ViewRiddle = () => {
           <div>
             <EngravedText>{locker}</EngravedText>
             <LineDivider />
-            <Typography variant="h5" component="h2" gutterBottom style={{ color: '#fff' }}>
+            <Typography variant="h5" component="h2" gutterBottom style={{ color: theme.palette.locker.text }}>
               The Riddle Is:
             </Typography>
-            <Typography variant="h5" component="h2" gutterBottom style={{ color: '#fff' }}>
+            <Typography variant="h5" component="h2" gutterBottom style={{ color: theme.palette.locker.text }}>
               {data.Riddle}
             </Typography>
             <br />
@@ -148,14 +151,14 @@ const ViewRiddle = () => {
                 onChange={(e) => setAnswer(e.target.value)}
                 autoComplete='off'
               />
-              <FormHelperText id="passcode-helper-text" style={{ color: '#fff' }}>
+              <FormHelperText id="passcode-helper-text" style={{ color: theme.palette.locker.text }}>
                 Enter your guess
               </FormHelperText>
             </FormControl>
 
             {!showSecret && (
               <FormControl>
-                <Button onClick={handleSubmit}>Submit</Button>
+                <Button onClick={handleSubmit} style={{color:theme.palette.locker.text}}>Submit</Button>
               </FormControl>
             )}
 
@@ -181,11 +184,11 @@ const ViewRiddle = () => {
 
             {showSecret && (
               <div>
-                <Typography variant="h5" component="h2" gutterBottom style={{ color: '#fff' }}>
+                <Typography variant="h5" component="h2" gutterBottom style={{ color: theme.palette.locker.text }}>
                   Correct! Unveiling the secret:
                 </Typography>
                 <br />
-                <Typography variant="h6" component="div" style={{ color: '#fff' }}>
+                <Typography variant="h6" component="div" style={{ color: theme.palette.locker.text }}>
                   {secret}
                 </Typography>
               </div>
@@ -193,7 +196,7 @@ const ViewRiddle = () => {
           </div>
         )}
         {isLoading && (
-          <Typography variant="h5" component="h2" style={{ color: '#fff' }}>
+          <Typography variant="h5" component="h2" style={{ color: theme.palette.locker.text }}>
             Loading Riddle
           </Typography>
         )}
