@@ -1,6 +1,6 @@
 # Riddle Locker!
 
-Riddle Locker is a side project I'm working on! It lets users lock text behind "Riddles"
+Riddle Locker is a side project I'm working on! It lets users lock text behind "Riddles".
 
 Riddles are prompts other users must solve to gain access to the locked text. Head over to [here](https://www.riddlelocker.com) to try it out!
 
