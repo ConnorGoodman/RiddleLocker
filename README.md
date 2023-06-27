@@ -1,6 +1,6 @@
 # Riddle Locker!
 
-Riddle Locker is a side project I'm working on! It lets users lock text behind "Riddles"
+Riddle Locker is a side project I'm working on! It lets users lock text behind "Riddles".
 
 Riddles are prompts other users must solve to gain access to the locked text. Head over to [here](https://www.riddlelocker.com) to try it out!
 
@@ -44,3 +44,15 @@ scripts is disabled on this system.`, open up PowerShell as an administrator and
 ### Resources
 https://learn.microsoft.com/en-us/azure/static-web-apps/getting-started?tabs=react \
 https://learn.microsoft.com/en-us/azure/static-web-apps/add-api?tabs=react
+
+### TODO
+* Fix bug where answers are always incorrect on mobile.
+* Update images throughout website.
+
+### Future Enhancements?
+* Login system.
+* Ability to edit/ delete riddles.
+* Better riddle search.
+* Hide images/ clickable links behind riddles.
+
+Feel free to send me feedback or feature suggestions!
