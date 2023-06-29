@@ -20,6 +20,7 @@ const SectionContainer = styled('div')(({ theme }) => ({
   padding: '2rem',
   textAlign: 'center',
   boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
+  maxWidth: '600px',
 }));
 
 const EngravedText = styled('h1')(({ theme }) => ({
@@ -59,7 +60,7 @@ const StyledInput = styled(Input)(({ theme }) => ({
 }));
 
 const ViewRiddle = () => {
-  //const [data, setData] = useState({ Riddle: 'What is the answer to life, the universe, and everything?', Secret: '42', Locker: '1'});
+  //const [data, setData] = useState({ Riddle: 'What is the answer to life, the universe, and everything? Also, what are your thoughts on blahahahahhahaahahwhdhawdhahdahdhw and stuff? Ok cool!', Secret: '42', Locker: '1'});
   const [data, setData] = useState();
   const [answer, setAnswer] = useState();
   const [locker, setLocker] = useState();
