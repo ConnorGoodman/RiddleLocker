@@ -68,8 +68,8 @@ function Home() {
           <div style={{ textAlign: 'left' }}>
             <Paragraph>
               Create engaging riddles to lock and protect your information. Whether it's passwords,
-              secret messages, or confidential documents, Riddle Locker offers a fun and secure way
-              to share sensitive information with trusted individuals.
+              secret messages, or links, Riddle Locker offers a fun and secure way
+              to share information.
             </Paragraph>
           </div>
         </Grid>
@@ -110,9 +110,10 @@ function Home() {
           This adds an element of mystery and excitement to the game and makes it more interactive.
         </ListItem>
       </Typography>
-      <Typography>And more!</Typography>
+      
     </ListContainer>
   </div>
+  <Grid item><Typography><a href='/createriddle'>Create a riddle</a> to get started!</Typography></Grid>
 </Grid>
 
          
