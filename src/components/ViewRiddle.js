@@ -136,7 +136,7 @@ const ViewRiddle = () => {
       <SectionContainer>
         {data && (
           <div>
-            <EngravedText>{locker}</EngravedText>
+            <EngravedText>{locker.toUpperCase()}</EngravedText>
             <LineDivider />
             <Typography variant="h5" component="h2" gutterBottom style={{ color: theme.palette.locker.text }}>
               The Riddle Is:
