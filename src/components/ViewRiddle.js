@@ -20,7 +20,7 @@ const SectionContainer = styled('div')(({ theme }) => ({
   padding: '2rem',
   textAlign: 'center',
   boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
-  maxWidth: '600px',
+  maxWidth: 'min(600px, 95%)',
 }));
 
 const EngravedText = styled('h1')(({ theme }) => ({
@@ -30,6 +30,9 @@ const EngravedText = styled('h1')(({ theme }) => ({
   color: theme.palette.locker.text,
   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
   letterSpacing: '2px',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 }));
 
 const LineDivider = styled('hr')(({ theme }) => ({
