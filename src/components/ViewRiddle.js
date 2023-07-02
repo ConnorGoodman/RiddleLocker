@@ -33,7 +33,10 @@ const EngravedText = styled('h1')(({ theme }) => ({
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  display: 'flex',
+  flexShrink: 1,
 }));
+
 
 const LineDivider = styled('hr')(({ theme }) => ({
   border: 0,
