@@ -43,7 +43,7 @@ function Home2() {
             or
             </Typography>
             <Button variant='outlined' color='light_text' style={{borderColor:'white'}} href='/createriddle'>
-                Create a riddle
+                Create a locker
             </Button>
             <br/>
             <br/>

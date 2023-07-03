@@ -113,7 +113,7 @@ function Home() {
       
     </ListContainer>
   </div>
-  <Grid item><Typography><a href='/createriddle'>Create a riddle</a> to get started!</Typography></Grid>
+  <Grid item><Typography><a href='/createriddle'>Create a locker</a> to get started!</Typography></Grid>
 </Grid>
 
          

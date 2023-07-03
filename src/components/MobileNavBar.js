@@ -162,7 +162,7 @@ const NavBar = () => {
               <ListItemText primary="Home" />
             </ListItem>
             <ListItem onClick={() => handleNavigation("/createriddle")}>
-              <ListItemText primary="Create a Riddle" />
+              <ListItemText primary="Create a Locker" />
             </ListItem>
             <ListItem onClick={() => handleNavigation("/about")}>
               <ListItemText primary="About" />

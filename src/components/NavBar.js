@@ -134,7 +134,7 @@ const NavBar = () => {
                 onClick={() => navigate('/createriddle')}
                 sx={{ mr: 1 }}
               >
-                <Typography style={{ textAlign: "center" }}>Create a Riddle</Typography>
+                <Typography style={{ textAlign: "center" }}>Create a Locker</Typography>
               </Button>
               <Button
                 variant="h6"
