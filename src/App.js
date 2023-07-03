@@ -49,6 +49,7 @@ function App() {
       },
       background: {
         main: themeColors.background,
+        secondary: themeColors.lockerBackground,
       },
       text: {
         main: themeColors.text,
