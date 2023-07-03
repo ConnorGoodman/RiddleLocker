@@ -8,7 +8,7 @@ export const PageContainer = styled('div')(({ theme }) => ({
     padding: '1rem',
     paddingRight: '.5rem',
     paddingLeft: '.5rem',
-    minHeight: '100vh',
+    //minHeight: '100vh',
   }));
 
   export const SectionContainer = styled('div')(({ theme }) => ({
@@ -17,7 +17,8 @@ export const PageContainer = styled('div')(({ theme }) => ({
     padding: '1rem',
     textAlign: 'center',
     boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
-    maxWidth: 'min(600px, 95%)',
+    width: 'min(600px, 95%)',
+
   }));
   
   export const ImageContainer = styled('div')({
@@ -25,7 +26,7 @@ export const PageContainer = styled('div')(({ theme }) => ({
   });
 
   export const LineDivider = styled('hr')(({ theme }) => ({
-    border: 0,
-    borderTop: `1px solid ${theme.palette.text.main}`,
+    border: `1px solid ${theme.palette.locker.text}`,
     margin: '2rem 0',
+
   }));

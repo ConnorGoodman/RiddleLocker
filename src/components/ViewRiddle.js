@@ -99,12 +99,13 @@ const ViewRiddle = () => {
       <SectionContainer>
         {data && (
           <div>
-            <Typography variant="h4" component="h1" style={{ fontFamily: 'Avenir, sans-serif', fontWeight: 'bold', color: theme.palette.locker.text, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)', letterSpacing: '2px', maxWidth: 'min(600px, 95%)' }}>
+            <br/>
+            <Typography variant="h4" fontSize='1.5rem' component="h1" style={{ fontFamily: 'Avenir, sans-serif', fontWeight: 'bold', color: theme.palette.locker.text, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)', letterSpacing: '2px', maxWidth: 'min(600px, 95%)', whiteSpace: 'initial' }}>
               {locker.toUpperCase()}
             </Typography>
             <LineDivider />
-            <Typography variant="h5" fontSize='1rem' component="h2" gutterBottom style={{ color: theme.palette.locker.text }}>
-              The Riddle Is:
+            <Typography variant="h5" fontSize='1rem' component="h2" gutterBottom style={{ color: theme.palette.locker.text, fontWeight:'bold' }}>
+              Answer this riddle:
             </Typography>
             <Typography variant="h5" fontSize='1rem' component="h2" gutterBottom style={{ color: theme.palette.locker.text }}>
               {data.Riddle}
@@ -124,17 +125,18 @@ const ViewRiddle = () => {
 
             {!showSecret && (
               <FormControl>
-                <Button onClick={handleSubmit} style={{color:theme.palette.locker.text}}>Submit</Button>
+                <Button onClick={handleSubmit} variant='outlined' color='light_text' margin='1rem' style={{borderColor:'white'}}>Submit</Button>
               </FormControl>
             )}
 
-            {!showSecret && (
-              <div>
-                <ImageContainer>
-                  <Image src={closedlock} alt="locked padlock" />
-                </ImageContainer>
-              </div>
-            )}
+            <div>
+              <ImageContainer>
+                {showSecret ? 
+                (<Image src={openlock} alt="locked padlock" />) : 
+                (<Image src={closedlock} alt="locked padlock" />)}
+              </ImageContainer>
+            </div>
+            
 
             {showIncorrect && (
               <Typography variant="h6" component="div" color="error">Incorrect! Try again!</Typography>
@@ -142,19 +144,11 @@ const ViewRiddle = () => {
 
             {showSecret && (
               <div>
-                <ImageContainer>
-                  <Image src={openlock} alt="unlocked padlock" />
-                </ImageContainer>
-              </div>
-            )}
-
-            {showSecret && (
-              <div>
-                <Typography variant="h5" component="h2" gutterBottom style={{ color: theme.palette.locker.text }}>
-                  Correct! Unveiling the secret:
+                <Typography fontSize='1.5rem' variant="h5" component="h2" gutterBottom style={{ color: theme.palette.locker.text, fontWeight:'bold' }}>
+                  Correct! Let's see what was inside this locker:
                 </Typography>
                 <br />
-                <Typography variant="h6" component="div" style={{ color: theme.palette.locker.text }}>
+                <Typography fontSize='1rem' variant="h6" component="div" style={{ color: theme.palette.locker.text, borderBlockColor: theme.palette.locker.text  }}>
                   {secret}
                 </Typography>
               </div>
