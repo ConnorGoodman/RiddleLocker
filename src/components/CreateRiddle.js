@@ -4,30 +4,10 @@ import {
   Button,
   InputLabel,
   FormHelperText,
-  Input,
-  Typography,
-  Box,
+  Input
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { styled } from '@mui/material/styles';
-
-const Container = styled(Box)(({ theme }) => ({
-  padding: '60px',
-  marginTop: theme.spacing(4),
-  backgroundColor: theme.palette.background.main,
-  maxWidth: '500px',
-  margin: '0 auto',
-}));
-
-const Heading = styled(Typography)(({ theme }) => ({
-  fontWeight: 'bold',
-  marginBottom: theme.spacing(2),
-}));
-
-const ErrorMessage = styled(Typography)(({ theme }) => ({
-  color: theme.palette.error.main,
-  marginTop: theme.spacing(2),
-}));
+import { Container, Heading, ErrorMessage } from '../styles/FormStyles';
 
 function CreateRiddle() {
   const [riddle, setRiddle] = useState('');
