@@ -8,6 +8,7 @@ export const PageContainer = styled('div')(({ theme }) => ({
     padding: '1rem',
     paddingRight: '.5rem',
     paddingLeft: '.5rem',
+    minHeight: '100vh',
   }));
 
   export const SectionContainer = styled('div')(({ theme }) => ({
@@ -22,3 +23,9 @@ export const PageContainer = styled('div')(({ theme }) => ({
   export const ImageContainer = styled('div')({
     marginTop: '1rem',
   });
+
+  export const LineDivider = styled('hr')(({ theme }) => ({
+    border: 0,
+    borderTop: `1px solid ${theme.palette.text.main}`,
+    margin: '2rem 0',
+  }));

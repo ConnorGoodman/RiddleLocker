@@ -3,39 +3,11 @@ import { FormControl, Button, Input, FormHelperText, Typography, useTheme } from
 import { styled } from '@mui/system';
 import openlock from '../images/lock_open_white.svg';
 import closedlock from '../images/lock_white.svg';
-
-const PageContainer = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.background.main,
-  display: 'flex',
-  justifyContent: 'center',
-  fontFamily: 'Avenir, sans-serif',
-  padding: '1rem',
-  paddingRight: '.5rem',
-  paddingLeft: '.5rem',
-}));
-
-const SectionContainer = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.locker.background,
-  borderRadius: '8px',
-  padding: '1rem',
-  textAlign: 'center',
-  boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
-  maxWidth: 'min(600px, 95%)',
-}));
-
-const ImageContainer = styled('div')({
-  marginTop: '1rem',
-});
+import { PageContainer, SectionContainer, ImageContainer, LineDivider } from '../styles/LockerStyles';
 
 const Image = styled('img')({
   width: '7rem',
 });
-
-const LineDivider = styled('hr')(({ theme }) => ({
-  border: 0,
-  borderTop: `1px solid ${theme.palette.text.main}`,
-  margin: '2rem 0',
-}));
 
 const StyledInput = styled(Input)(({ theme }) => ({
   color: theme.palette.locker.text,
