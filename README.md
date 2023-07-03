@@ -46,7 +46,6 @@ https://learn.microsoft.com/en-us/azure/static-web-apps/getting-started?tabs=rea
 https://learn.microsoft.com/en-us/azure/static-web-apps/add-api?tabs=react
 
 ### TODO
-* Fix bug where answers are always incorrect on mobile.
 * Update images throughout website.
 
 ### Future Enhancements?
