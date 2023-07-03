@@ -1,56 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl, Button, Input, FormHelperText, Typography, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
-import openlock from '../images/unlocked.jpg';
-import closedlock from '../images/locked.jpg';
+import openlock from '../images/lock_open_white.svg';
+import closedlock from '../images/lock_white.svg';
 
 const PageContainer = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.main,
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: '100vh',
   fontFamily: 'Avenir, sans-serif',
-  padding: '2rem',
+  padding: '1rem',
+  paddingRight: '.5rem',
+  paddingLeft: '.5rem',
 }));
 
 const SectionContainer = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.locker.background,
   borderRadius: '8px',
-  padding: '2rem',
+  padding: '1rem',
   textAlign: 'center',
   boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
   maxWidth: 'min(600px, 95%)',
 }));
 
-const EngravedText = styled('h1')(({ theme }) => ({
-  fontFamily: 'Avenir, sans-serif',
-  fontSize: '2.5rem',
-  fontWeight: 'bold',
-  color: theme.palette.locker.text,
-  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
-  letterSpacing: '2px',
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  display: 'flex',
-  flexShrink: 1,
-}));
+const ImageContainer = styled('div')({
+  marginTop: '1rem',
+});
 
+const Image = styled('img')({
+  width: '7rem',
+});
 
 const LineDivider = styled('hr')(({ theme }) => ({
   border: 0,
   borderTop: `1px solid ${theme.palette.text.main}`,
   margin: '2rem 0',
 }));
-
-const ImageContainer = styled('div')({
-  marginTop: '2rem',
-});
-
-const Image = styled('img')({
-  width: '200px',
-});
 
 const StyledInput = styled(Input)(({ theme }) => ({
   color: theme.palette.locker.text,
@@ -142,12 +127,14 @@ const ViewRiddle = () => {
       <SectionContainer>
         {data && (
           <div>
-            <EngravedText>{locker.toUpperCase()}</EngravedText>
+            <Typography variant="h4" component="h1" style={{ fontFamily: 'Avenir, sans-serif', fontWeight: 'bold', color: theme.palette.locker.text, textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)', letterSpacing: '2px', maxWidth: 'min(600px, 95%)' }}>
+              {locker.toUpperCase()}
+            </Typography>
             <LineDivider />
-            <Typography variant="h5" component="h2" gutterBottom style={{ color: theme.palette.locker.text }}>
+            <Typography variant="h5" fontSize='1rem' component="h2" gutterBottom style={{ color: theme.palette.locker.text }}>
               The Riddle Is:
             </Typography>
-            <Typography variant="h5" component="h2" gutterBottom style={{ color: theme.palette.locker.text }}>
+            <Typography variant="h5" fontSize='1rem' component="h2" gutterBottom style={{ color: theme.palette.locker.text }}>
               {data.Riddle}
             </Typography>
             <br />

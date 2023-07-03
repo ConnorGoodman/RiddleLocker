@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ReactDOM from 'react-dom'; // Update the import statement
-import Home from './components/Home';
+//import Home from './components/Home';
+import Home2 from './components/Home2';
 import CreateRiddle from './components/CreateRiddle';
 import ViewRiddle from './components/ViewRiddle';
 import NoPage from './components/NoPage';
@@ -69,7 +70,7 @@ function App() {
         {isMobile ? <MobileNavBar /> : <NavBar />}
         <Routes>
           <Route path="/">
-            <Route index element={<Home />} />
+            <Route index element={<Home2/>} />
             <Route path="viewriddle" element={<ViewRiddle />} />
             <Route path="createriddle" element={<CreateRiddle />} />  
             <Route path="about" element={<About/>} />
