@@ -125,7 +125,7 @@ const ViewRiddle = () => {
 
             {!showSecret && (
               <FormControl>
-                <Button onClick={handleSubmit} variant='outlined' color='light_text' margin='1rem' style={{borderColor:'white'}}>Submit</Button>
+                <Button onClick={handleSubmit} variant='outlined' color='light_text' style={{borderColor:'white', margin:'1rem'}}>Submit</Button>
               </FormControl>
             )}
 
