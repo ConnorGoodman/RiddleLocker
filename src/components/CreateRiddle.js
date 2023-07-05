@@ -27,7 +27,7 @@ function CreateRiddle() {
   const [errorMessage, setErrorMessage] = useState('');
 
   const validateLockerName = useCallback((lockerName) => {
-    return lockerName.length >= 1 && !lockerName.includes(' ') && isValidQueryParameter(lockerName);
+    return lockerName.length >= 1 && lockerName.length <= 30 && !lockerName.includes(' ') && isValidQueryParameter(lockerName);
   }, []);
 
   const validateForm = useCallback(() => {
@@ -156,7 +156,7 @@ function CreateRiddle() {
             error={formSubmitted && !validLockerName}
           />
           <FormHelperText id="locker-name-helper-text">
-            Must be a unique name. Cannot include spaces.
+            Must be a unique name. Cannot include spaces. Up to 30 characters.
           </FormHelperText>
         </FormControl>
       </div>

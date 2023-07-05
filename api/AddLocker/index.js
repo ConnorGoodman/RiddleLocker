@@ -103,9 +103,9 @@ function validateData(data) {
     else if (data.RowKey.length == 0 || data.Answer.length == 0 || data.PartitionKey.length == 0 || data.Riddle.length == 0 ||  data.Answer.length == 0 ||  data.Answer.secret == 0) {
         return false;
     }
-    // each field must be a valid query parameter
-    // else if (!isValidQueryParameter(data.RowKey) || isValidQueryParameter(data.PartitionKey)) {
-    //     return false;
-    // }
+    // locker name must have length less than 21
+    else if (data.RowKey.length > 30) {
+        return false;
+    }
     return true;
 }

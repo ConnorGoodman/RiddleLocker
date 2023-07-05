@@ -59,8 +59,8 @@ module.exports = async function (context, req) {
         if (lockerName.includes(' ')) {
             return false;
         }
-        // each field must have a length greater than 0
-        else if (lockerName.length < 1) {
+        // each field must have a length greater than 0 and less than or equal to 30
+        else if (lockerName.length < 1 || lockerName.length > 30) {
             return false;
         }
         return true
