@@ -5,9 +5,9 @@ import {
   InputLabel,
   FormHelperText,
   Input,
-  Typography
+  Typography,
+  CircularProgress,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { Container, Heading, ErrorMessage } from '../styles/FormStyles';
 
 function CreateRiddle() {
@@ -19,6 +19,7 @@ function CreateRiddle() {
 
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [submissionSuccessful, setSubmissionSuccessful] = useState(false);
+  const [loading, setLoading] = useState(false); // New state for loading animation
 
   const [validRiddle, setValidRiddle] = useState(true);
   const [validLockerName, setValidLockerName] = useState(true);
@@ -29,7 +30,12 @@ function CreateRiddle() {
   const [errorMessage, setErrorMessage] = useState('');
 
   const validateLockerName = useCallback((lockerName) => {
-    return lockerName.length >= 1 && lockerName.length <= 30 && !lockerName.includes(' ') && isValidQueryParameter(lockerName);
+    return (
+      lockerName.length >= 1 &&
+      lockerName.length <= 30 &&
+      !lockerName.includes(' ') &&
+      isValidQueryParameter(lockerName)
+    );
   }, []);
 
   const validateForm = useCallback(() => {
@@ -47,17 +53,17 @@ function CreateRiddle() {
     if (!str) {
       return false;
     }
-  
+
     const forbiddenChars = ['&', '=', '?', '#'];
-    if (forbiddenChars.some(char => str.includes(char))) {
+    if (forbiddenChars.some((char) => str.includes(char))) {
       return false;
     }
-  
+
     const firstChar = str.charAt(0);
     if (!/[a-zA-Z_]/.test(firstChar)) {
       return false;
     }
-  
+
     const allowedChars = /[a-zA-Z0-9\-_.~]/;
     for (let i = 1; i < str.length; i++) {
       if (!allowedChars.test(str.charAt(i))) {
@@ -74,14 +80,18 @@ function CreateRiddle() {
     const formIsValid = isFormValid();
     if (formIsValid) {
       setIsError(false);
-      fetch(`api/AddLocker/?` +
-        new URLSearchParams({
-          user: 'RiddleLocker',
-          riddle: riddle,
-          lockername: lockerName,
-          answer: passcode,
-          secret: secret,
-        }), { method: 'POST' })
+      setLoading(true); // Start loading animation
+      fetch(
+        `api/AddLocker/?` +
+          new URLSearchParams({
+            user: 'RiddleLocker',
+            riddle: riddle,
+            lockername: lockerName,
+            answer: passcode,
+            secret: secret,
+          }),
+        { method: 'POST' }
+      )
         .then((response) => {
           if (!response.ok && response.status !== 200) {
             throw new Error('Invalid response');
@@ -100,13 +110,15 @@ function CreateRiddle() {
           console.log(error);
           setIsError(true);
           setErrorMessage('Error connecting. Please try again later!');
+        })
+        .finally(() => {
+          setLoading(false); // Stop loading animation
         });
     } else {
       setIsError(true);
       setErrorMessage('Make sure the form is filled out correctly.');
     }
   }
-
 
   function handleLockerName(lockerName) {
     setValidLockerName(validateLockerName(lockerName));
@@ -139,7 +151,7 @@ function CreateRiddle() {
   function validateSecret(secret) {
     return secret.length >= 1;
   }
-  
+
   function isFormValid() {
     return validLockerName && validPasscode && validRiddle && validSecret;
   }
@@ -191,7 +203,7 @@ function CreateRiddle() {
             aria-describedby="passcode-helper-text"
             onChange={(e) => handlePasscode(e.target.value)}
             error={formSubmitted && !validPasscode}
-            autoComplete='off'
+            autoComplete="off"
             disabled={submissionSuccessful}
           />
           <FormHelperText id="passcode-helper-text">
@@ -211,29 +223,34 @@ function CreateRiddle() {
             aria-describedby="secret-helper-text"
             onChange={(e) => handleSecret(e.target.value)}
             error={formSubmitted && !validSecret}
-            autoComplete='off'
+            autoComplete="off"
             disabled={submissionSuccessful}
           />
           <FormHelperText id="secret-helper-text">
-            What is being stored in the locker?
+           What is being stored in the locker?
           </FormHelperText>
         </FormControl>
       </div>
       <br />
       <div>
         <FormControl fullWidth>
-          <Button onClick={(e) => Submit()} variant="contained" disabled={submissionSuccessful}> 
+          <Button onClick={(e) => Submit()} variant="contained" disabled={submissionSuccessful}>
             Submit
           </Button>
         </FormControl>
       </div>
+      {loading && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
+          <CircularProgress />
+        </div>
+      )}
       {isError && (
         <ErrorMessage variant="body2">{errorMessage}</ErrorMessage>
       )}
       {data && (
         <div>
           <Typography variant="body2">Locker successfully created!</Typography>
-          <Button variant='outlined' color='text' style={{borderColor:'white'}} href={data}>
+          <Button variant="outlined" color="text" style={{ borderColor: 'white' }} href={data}>
             See your locker
           </Button>
         </div>
