@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, Button, Input, FormHelperText, Typography, useTheme } from '@mui/material';
+import { FormControl, Button, Input, FormHelperText, Typography, useTheme, CircularProgress } from '@mui/material';
 import { styled } from '@mui/system';
 import openlock from '../images/lock_open_white.svg';
 import closedlock from '../images/lock_white.svg';
@@ -23,7 +23,6 @@ const StyledInput = styled(Input)(({ theme }) => ({
 }));
 
 const ViewRiddle = () => {
-  //const [data, setData] = useState({ Riddle: 'What is the answer to life, the universe, and everything? Also, what are your thoughts on blahahahahhahaahahwhdhawdhahdahdhw and stuff? Ok cool!', Secret: '42', Locker: '1'});
   const [data, setData] = useState();
   const [answer, setAnswer] = useState();
   const [locker, setLocker] = useState();
@@ -68,6 +67,8 @@ const ViewRiddle = () => {
   }, []);
 
   const handleSubmit = () => {
+    setIsLoading(true); // Start loading animation
+
     fetch(`api/TryGetSecret/?` +
       new URLSearchParams({
         locker: locker,
@@ -89,6 +90,9 @@ const ViewRiddle = () => {
       .catch((error) => {
         console.log('error: ' + error);
         return;
+      })
+      .finally(() => {
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -156,9 +160,9 @@ const ViewRiddle = () => {
           </div>
         )}
         {isLoading && (
-          <Typography variant="h5" component="h2" style={{ color: theme.palette.locker.text }}>
-            Loading Riddle
-          </Typography>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
+            <CircularProgress color="light_text" />
+          </div>
         )}
         {isError && (
           <Typography variant="h5" component="h2" color="error">

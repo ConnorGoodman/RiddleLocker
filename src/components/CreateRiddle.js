@@ -250,7 +250,7 @@ function CreateRiddle() {
       {data && (
         <div>
           <Typography variant="body2">Locker successfully created!</Typography>
-          <Button variant="outlined" color="text" style={{ borderColor: 'white' }} href={data}>
+          <Button variant="contained" href={data}>
             See your locker
           </Button>
         </div>
