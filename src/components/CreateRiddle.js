@@ -4,7 +4,8 @@ import {
   Button,
   InputLabel,
   FormHelperText,
-  Input
+  Input,
+  Typography
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Container, Heading, ErrorMessage } from '../styles/FormStyles';
@@ -17,6 +18,7 @@ function CreateRiddle() {
   const [data, setData] = useState('');
 
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submissionSuccessful, setSubmissionSuccessful] = useState(false);
 
   const [validRiddle, setValidRiddle] = useState(true);
   const [validLockerName, setValidLockerName] = useState(true);
@@ -90,6 +92,7 @@ function CreateRiddle() {
           console.log('Response:');
           console.log(r);
           setData(r.url);
+          setSubmissionSuccessful(true);
           setIsError(false);
         })
         .catch((error) => {
@@ -154,6 +157,7 @@ function CreateRiddle() {
             aria-describedby="locker-name-helper-text"
             onChange={(e) => handleLockerName(e.target.value)}
             error={formSubmitted && !validLockerName}
+            disabled={submissionSuccessful}
           />
           <FormHelperText id="locker-name-helper-text">
             Must be a unique name. Cannot include spaces. Up to 30 characters.
@@ -171,6 +175,7 @@ function CreateRiddle() {
             aria-describedby="riddle-helper-text"
             onChange={(e) => handleRiddle(e.target.value)}
             error={formSubmitted && !validRiddle}
+            disabled={submissionSuccessful}
           />
           <FormHelperText id="riddle-helper-text">
             What riddle will be on the locker?
@@ -187,6 +192,7 @@ function CreateRiddle() {
             onChange={(e) => handlePasscode(e.target.value)}
             error={formSubmitted && !validPasscode}
             autoComplete='off'
+            disabled={submissionSuccessful}
           />
           <FormHelperText id="passcode-helper-text">
             What phrase will open the locker?
@@ -206,6 +212,7 @@ function CreateRiddle() {
             onChange={(e) => handleSecret(e.target.value)}
             error={formSubmitted && !validSecret}
             autoComplete='off'
+            disabled={submissionSuccessful}
           />
           <FormHelperText id="secret-helper-text">
             What is being stored in the locker?
@@ -215,7 +222,7 @@ function CreateRiddle() {
       <br />
       <div>
         <FormControl fullWidth>
-          <Button onClick={(e) => Submit()} variant="contained">
+          <Button onClick={(e) => Submit()} variant="contained" disabled={submissionSuccessful}> 
             Submit
           </Button>
         </FormControl>
@@ -225,7 +232,10 @@ function CreateRiddle() {
       )}
       {data && (
         <div>
-          <Link to={data}>See your locker</Link>
+          <Typography variant="body2">Locker successfully created!</Typography>
+          <Button variant='outlined' color='text' style={{borderColor:'white'}} href={data}>
+            See your locker
+          </Button>
         </div>
       )}
     </Container>
